@@ -585,14 +585,6 @@ function UsuarioDetalle({ usuarioId }) {
             </div>
 
             <div className="d-flex gap-2">
-              <button
-                type="button"
-                className="btn btn-outline-warning"
-                onClick={handleResetPassword}
-                disabled={saving}
-              >
-                Resetear contraseña
-              </button>
               {isEditing && (
                 <button
                   type="submit"
