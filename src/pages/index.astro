@@ -1,16 +1,315 @@
 ---
-
+export const prerender = false;
+import PublicLayout from "../layouts/PublicLayout.astro";
+import ChatRegistroBodega from "../components/home/ChatRegistroBodega.jsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<PublicLayout title="VinOps · La operativa diaria de tu bodega">
+  <!-- HERO PRINCIPAL -->
+  <section class="hero-section" id="que-es">
+    <div class="container">
+      <div class="row align-items-center min-vh-100">
+        <!-- Texto -->
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <span class="hero-badge mb-3">
+            Aplicación web para bodegas pequeñas
+          </span>
+
+          <h1 class="hero-title mb-3">
+            Controla la operativa diaria
+            <span class="hero-title-highlight">de tu bodega</span>
+            sin hojas de cálculo.
+          </h1>
+
+          <p class="lead text-muted mb-4">
+            VinOps reúne en una sola aplicación lo que realmente usas en el día
+            a día: parcelas, lotes de vino, stock de materiales, clientes y
+            entregas. Sin contabilidad, sin módulos que no necesitas.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="/login" class="btn btn-primary btn-lg px-4">
+              Entrar en VinOps
+            </a>
+            <a href="#modulos" class="btn btn-outline-secondary btn-lg px-4">
+              Ver módulos
+            </a>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="hero-chip">✔ Trazabilidad uva → botella</span>
+            <span class="hero-chip">✔ Roles ADMIN / OPERARIO</span>
+            <span class="hero-chip">✔ Pensado para bodegas familiares</span>
+          </div>
+
+          <p class="small text-muted mb-0">
+            La demo pública utiliza datos ficticios de la bodega de
+            demostración <strong>Campos de la Ribera</strong>. Los datos reales
+            de las bodegas que usan VinOps no se muestran en la parte pública.
+          </p>
+        </div>
+
+        <!-- Panel de demo -->
+        <div class="col-lg-6">
+          <div class="hero-preview-card shadow-sm">
+            <div
+              class="d-flex justify-content-between align-items-start mb-3"
+            >
+              <div>
+                <div class="small text-muted mb-1">Bodega de demostración</div>
+                <h5 class="mb-0">Bodega Campos de la Ribera</h5>
+                <small class="text-muted">
+                  slug: <code>campos-de-la-ribera</code>
+                </small>
+              </div>
+              <span class="badge rounded-pill bg-primary-subtle text-primary">
+                Demo multibodega
+              </span>
+            </div>
+
+            <!-- KPIs -->
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-sm-3">
+                <div class="hero-kpi">
+                  <div class="small text-muted">Parcelas</div>
+                  <div class="h4 mb-0">7</div>
+                  <div class="small text-success">viñedo en vaso</div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="hero-kpi">
+                  <div class="small text-muted">Lotes</div>
+                  <div class="h4 mb-0">4</div>
+                  <div class="small text-info">en crianza</div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="hero-kpi">
+                  <div class="small text-muted">Botellas</div>
+                  <div class="h4 mb-0">5.300</div>
+                  <div class="small text-muted">en stock</div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="hero-kpi">
+                  <div class="small text-muted">Entregas</div>
+                  <div class="h4 mb-0">12</div>
+                  <div class="small text-warning">este mes</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Listados de ejemplo sencillos -->
+            <div class="hero-list-block mb-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold small">
+                  Viñedo · últimos registros
+                </span>
+                <span class="badge text-bg-success small">3 registros</span>
+              </div>
+              <ul class="small mb-0">
+                <li>Muestreo de maduración · Pago La Ribera</li>
+                <li>Tratamiento oídio · Parcela El Mirador</li>
+                <li>Labores de suelo · Viña vieja Tempranillo</li>
+              </ul>
+            </div>
+
+            <div class="hero-list-block mb-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold small">
+                  Stock de vino embotellado
+                </span>
+                <span class="badge text-bg-info small">Inventario</span>
+              </div>
+              <ul class="small mb-0">
+                <li>Tinto joven Mencía · 1.800 botellas</li>
+                <li>Tinto roble Mencía · 2.100 botellas</li>
+                <li>Blanco Palomino · 1.400 botellas</li>
+              </ul>
+            </div>
+
+            <div class="hero-list-block">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold small">
+                  Últimas entregas a clientes
+                </span>
+                <span class="badge text-bg-warning small">Comercial</span>
+              </div>
+              <ul class="small mb-1">
+                <li>Restaurante Asador del Duero · 24 cajas · 03/12</li>
+                <li>Enoteca La Plaza · 12 cajas · 10/12</li>
+              </ul>
+              <p class="small text-muted mb-0">
+                Datos de demostración. No corresponden a ninguna bodega real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASISTENTE IA · REGISTRO DE BODEGA -->
+  <section id="asistente-registro" class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-5">
+          <h2 class="h4 mb-3">Registra tu bodega con ayuda de la IA</h2>
+          <p class="text-muted">
+            Si aún no tienes claro cómo configurar VinOps para tu bodega, habla
+            con el asistente. Te irá pidiendo los datos clave y al final te
+            mostrará un resumen que podrás usar para crearla.
+          </p>
+          <ul class="small text-muted mb-3">
+            <li>Nombre de la bodega y localidad.</li>
+            <li>Zona o denominación de origen.</li>
+            <li>Hectáreas de viñedo y número de parcelas.</li>
+            <li>Variedades principales y tipos de vino.</li>
+            <li>Producción anual aproximada y notas.</li>
+          </ul>
+          <p class="small text-muted mb-0">
+            Este asistente es solo informativo: no crea todavía la bodega
+            automáticamente, pero deja los datos listos para que los revises.
+          </p>
+        </div>
+        <div class="col-lg-7">
+          <ChatRegistroBodega client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS PRINCIPALES -->
+  <section id="modulos" class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="h3 mb-2">Módulos principales de VinOps</h2>
+        <p class="text-muted mb-0">
+          No es un ERP gigante: solo lo que necesitas cada día en tu bodega,
+          pero bien organizado.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Viñedo -->
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card h-100">
+            <div class="module-icon">🍇</div>
+            <h5>Viñedo</h5>
+            <p class="mb-2">
+              Parcelas, labores, tratamientos, muestreos y vendimias, todo
+              enlazado.
+            </p>
+            <ul class="small text-muted mb-0">
+              <li>Registros por parcela y fecha.</li>
+              <li>Estimación de vendimia (IA simple).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bodega -->
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card h-100">
+            <div class="module-icon">🍷</div>
+            <h5>Bodega</h5>
+            <p class="mb-2">
+              Datos básicos de tu bodega y visualización general de lotes.
+            </p>
+            <ul class="small text-muted mb-0">
+              <li>Datos de contacto y ubicación.</li>
+              <li>Información técnica y notas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Inventario -->
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card h-100">
+            <div class="module-icon">📦</div>
+            <h5>Inventario</h5>
+            <p class="mb-2">
+              Vinos y materiales (cajas, botellas, tapones, etiquetas…) con
+              stock mínimo.
+            </p>
+            <ul class="small text-muted mb-0">
+              <li>Alertas de material crítico.</li>
+              <li>Recetas de embotellado y empaquetado.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Comercial -->
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card h-100">
+            <div class="module-icon">🤝</div>
+            <h5>Comercial</h5>
+            <p class="mb-2">
+              Clientes y entregas/albaranes para hostelería y venta directa.
+            </p>
+            <ul class="small text-muted mb-0">
+              <li>Estados: borrador → entregado.</li>
+              <li>Histórico por cliente y por vino.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="/login" class="btn btn-primary btn-lg px-4">
+          Iniciar sesión y empezar a usar VinOps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIBODEGA -->
+  <section id="multibodega" class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h2 class="h4 mb-3">Multibodega pensado para pequeñas bodegas</h2>
+          <p class="text-muted">
+            VinOps soporta varias bodegas en la misma instancia. Cada una tiene
+            su propia URL con <code>slug</code> y sus datos separados.
+          </p>
+          <ul class="small text-muted mb-3">
+            <li>Cada bodega tiene sus propios usuarios y configuraciones.</li>
+            <li>
+              Ideal para grupos pequeños de bodegas que comparten infraestructura.
+            </li>
+            <li>
+              El modelo de datos está pensado para ser ligero y entendible.
+            </li>
+          </ul>
+          <p class="small text-muted mb-0">
+            En esta demo se muestra solo una bodega de ejemplo, pero el backend
+            soporta varias.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="module-card">
+            <div class="mb-3">
+              <span class="badge text-bg-primary">Ejemplo de URLs</span>
+            </div>
+            <ul class="small mb-0">
+              <li>
+                <code>https://vinops.app/api/campos-de-la-ribera/...</code>
+              </li>
+              <li>
+                <code>https://vinops.app/api/bodegas-ramayal/...</code>
+              </li>
+              <li>
+                <code>https://vinops.app/api/otra-bodega/...</code>
+              </li>
+            </ul>
+            <p class="small text-muted mt-3 mb-0">
+              En el frontend, el usuario selecciona su bodega y VinOps utiliza
+              el <code>slug</code> en todas las llamadas a la API.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</PublicLayout>

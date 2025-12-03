@@ -1,0 +1,17 @@
+---
+// src/pages/app/comercial/entregas/nueva.astro
+export const prerender = false;
+
+import AppLayout from "../../../../layouts/AppLayout.astro";
+import EntregaNueva from "../../../../components/comercial/EntregaNueva.jsx";
+
+const pageTitle = "VinOps – Nueva entrega";
+const activeSection = "comercial";
+---
+
+<AppLayout pageTitle={pageTitle} activeSection={activeSection}>
+  <section class="container py-3">
+    <h1 class="h3 mb-3">Nueva entrega / albarán</h1>
+    <EntregaNueva client:load />
+  </section>
+</AppLayout>

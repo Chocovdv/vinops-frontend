@@ -1,0 +1,35 @@
+---
+// src/pages/app/inventario/productos/index.astro
+export const prerender = false;
+
+import AppLayout from "../../../../layouts/AppLayout.astro";
+import ProductosList from "../../../../components/inventario/ProductosList.jsx";
+
+const pageTitle = "VinOps – Inventario · Productos";
+const activeSection = "inventario";
+---
+
+<AppLayout pageTitle={pageTitle} activeSection={activeSection}>
+  <section class="container py-3">
+    {/* Submenú Inventario */}
+    <ul class="nav nav-pills mb-3">
+      <li class="nav-item">
+        <a href="/app/inventario/productos" class="nav-link active">
+          Productos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/app/inventario/lotes" class="nav-link">
+          Lotes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/app/inventario/empaquetado" class="nav-link">
+          Empaquetado
+        </a>
+      </li>
+    </ul>
+
+    <ProductosList client:load />
+  </section>
+</AppLayout>

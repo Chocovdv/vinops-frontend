@@ -1,0 +1,256 @@
+---
+
+---
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">VinOps</span>
+
+    <div class="d-flex align-items-center gap-3">
+      <!-- Info bodega (rellenada por LayoutInitializer) -->
+      <span class="navbar-text text-white d-none d-sm-inline">
+        Bodega: <span id="topbar-bodega">tu bodega</span>
+      </span>
+
+      <!-- Menú de usuario -->
+      <div class="dropdown" data-bs-auto-close="outside">
+        <button
+          class="btn btn-sm btn-outline-light dropdown-toggle d-flex align-items-center"
+          type="button"
+          id="userMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-person-circle me-1"></i>
+          <span id="topbar-username" class="d-none d-sm-inline">
+            Mi cuenta
+          </span>
+        </button>
+
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="userMenuButton"
+          id="user-dropdown-menu"
+        >
+          <!-- Vista principal del menú -->
+          <li class="view-main">
+            <a class="dropdown-item" href="/app/account/perfil">
+              <span id="menu-text-profile">Mi perfil</span>
+            </a>
+          </li>
+          <li class="view-main">
+            <a class="dropdown-item" href="/app/account/password">
+              <span id="menu-text-change-password">Cambiar contraseña</span>
+            </a>
+          </li>
+
+          <li><hr class="dropdown-divider view-main" /></li>
+
+          <li class="view-main">
+            <button
+              class="dropdown-item d-flex justify-content-between align-items-center"
+              type="button"
+              id="btn-open-lang"
+            >
+              <span id="menu-text-lang-item">
+                Idioma: <span id="current-lang-label">Español</span>
+              </span>
+              <span class="ms-2">&gt;</span>
+            </button>
+          </li>
+
+          <li><hr class="dropdown-divider view-main" /></li>
+
+          <li class="view-main">
+            <button class="dropdown-item" type="button" id="btn-logout">
+              <span id="menu-text-logout">Cerrar sesión</span>
+            </button>
+          </li>
+
+          <!-- Vista de selección de idioma -->
+          <li class="view-lang d-none">
+            <button
+              class="dropdown-item d-flex align-items-center"
+              type="button"
+              id="btn-back-lang"
+            >
+              <span class="me-2">&lt;</span>
+              <strong id="menu-text-lang-title">Selecciona tu idioma</strong>
+            </button>
+          </li>
+          <li class="view-lang d-none">
+            <button class="dropdown-item" type="button" id="btn-lang-en">
+              <span id="menu-text-lang-en">English</span>
+            </button>
+          </li>
+          <li class="view-lang d-none">
+            <button class="dropdown-item" type="button" id="btn-lang-es">
+              <span id="menu-text-lang-es">Español</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Script para idioma y vistas del menú (JS puro) -->
+<script>
+  // Desactiva el chequeo de TypeScript en este script (solo JS)
+  // @ts-nocheck
+
+  (function () {
+    const LANG_KEY = "vinops_lang";
+
+    function initLangMenu() {
+      const dropdownMenu = document.getElementById("user-dropdown-menu");
+      const toggleBtn = document.getElementById("userMenuButton");
+      if (!dropdownMenu || !toggleBtn) return;
+
+      const mainItems = dropdownMenu.querySelectorAll(".view-main");
+      const langItems = dropdownMenu.querySelectorAll(".view-lang");
+      const btnOpenLang = document.getElementById("btn-open-lang");
+      const btnBackLang = document.getElementById("btn-back-lang");
+      const btnLangEs = document.getElementById("btn-lang-es");
+      const btnLangEn = document.getElementById("btn-lang-en");
+      const currentLangLabel = document.getElementById("current-lang-label");
+
+      const texts = {
+        es: {
+          profile: "Mi perfil",
+          changePassword: "Cambiar contraseña",
+          logout: "Cerrar sesión",
+          langItem: "Idioma: {lang}",
+          langTitle: "Selecciona tu idioma",
+          langNameEs: "Español",
+          langNameEn: "English",
+          navEventos: "Eventos",
+        },
+        en: {
+          profile: "My profile",
+          changePassword: "Change password",
+          logout: "Logout",
+          langItem: "Language: {lang}",
+          langTitle: "Choose your language",
+          langNameEs: "Español",
+          langNameEn: "English",
+          navEventos: "Events",
+        },
+      };
+
+      function getLang() {
+        try {
+          const stored = localStorage.getItem(LANG_KEY);
+          return stored === "en" ? "en" : "es";
+        } catch (e) {
+          return "es";
+        }
+      }
+
+      function applyLang(lang) {
+        const dict = lang === "en" ? texts.en : texts.es;
+
+        const elProfile = document.getElementById("menu-text-profile");
+        const elChangePwd = document.getElementById(
+          "menu-text-change-password",
+        );
+        const elLogout = document.getElementById("menu-text-logout");
+        const elLangItem = document.getElementById("menu-text-lang-item");
+        const elLangTitle = document.getElementById("menu-text-lang-title");
+        const elLangEs = document.getElementById("menu-text-lang-es");
+        const elLangEn = document.getElementById("menu-text-lang-en");
+        const elNavEventos = document.getElementById("nav-text-eventos");
+
+        if (elProfile) elProfile.textContent = dict.profile;
+        if (elChangePwd) elChangePwd.textContent = dict.changePassword;
+        if (elLogout) elLogout.textContent = dict.logout;
+
+        const langName = lang === "en" ? dict.langNameEn : dict.langNameEs;
+
+        if (elLangItem) {
+          elLangItem.textContent = dict.langItem.replace("{lang}", langName);
+        }
+        if (currentLangLabel) {
+          currentLangLabel.textContent = langName;
+        }
+        if (elLangTitle) elLangTitle.textContent = dict.langTitle;
+
+        // En el submenú siempre mostramos "English" y "Español"
+        if (elLangEn) elLangEn.textContent = "English";
+        if (elLangEs) elLangEs.textContent = "Español";
+
+        // Texto del enlace lateral "Eventos / Events"
+        if (elNavEventos) {
+          elNavEventos.textContent = dict.navEventos;
+        }
+      }
+
+      function setLang(lang) {
+        try {
+          localStorage.setItem(LANG_KEY, lang);
+        } catch (e) {}
+
+        applyLang(lang);
+        // Recargamos para que React (módulo eventos) se monte con el idioma nuevo
+        window.location.reload();
+      }
+
+      function showMainView() {
+        mainItems.forEach((li) => li.classList.remove("d-none"));
+        langItems.forEach((li) => li.classList.add("d-none"));
+      }
+
+      function showLangView() {
+        mainItems.forEach((li) => li.classList.add("d-none"));
+        langItems.forEach((li) => li.classList.remove("d-none"));
+      }
+
+      const initialLang = getLang();
+      applyLang(initialLang);
+      showMainView();
+
+      // Abrir vista de idiomas sin cerrar el dropdown
+      if (btnOpenLang) {
+        btnOpenLang.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          showLangView();
+        });
+      }
+
+      // Volver al menú principal
+      if (btnBackLang) {
+        btnBackLang.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          showMainView();
+        });
+      }
+
+      // Elegir Español
+      if (btnLangEs) {
+        btnLangEs.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          setLang("es");
+        });
+      }
+
+      // Elegir English
+      if (btnLangEn) {
+        btnLangEn.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          setLang("en");
+        });
+      }
+    }
+
+    // Esperamos a que todo el DOM (incluido el sidebar) esté listo
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initLangMenu);
+    } else {
+      initLangMenu();
+    }
+  })();
+</script>

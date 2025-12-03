@@ -1,0 +1,19 @@
+---
+// src/pages/app/comercial/entregas/[id].astro
+export const prerender = false;
+
+import AppLayout from "../../../../layouts/AppLayout.astro";
+import EntregaDetalle from "../../../../components/comercial/EntregaDetalle.jsx";
+
+const { id } = Astro.params;
+
+const pageTitle = `VinOps – Entrega ${id}`;
+const activeSection = "comercial";
+---
+
+<AppLayout pageTitle={pageTitle} activeSection={activeSection}>
+  <section class="container py-3">
+    <h1 class="h3 mb-3">Detalle entrega / albarán</h1>
+    <EntregaDetalle client:load entregaId={id} />
+  </section>
+</AppLayout>

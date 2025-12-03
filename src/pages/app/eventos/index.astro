@@ -1,0 +1,27 @@
+---
+export const prerender = false;
+
+import AppLayout from "../../../layouts/AppLayout.astro";
+import EventosCalendario from "../../../components/eventos/EventosCalendario.jsx";
+import EventosList from "../../../components/eventos/EventosList.jsx";
+import EventosProximo from "../../../components/eventos/EventoProximo.jsx";
+---
+
+<AppLayout pageTitle="Eventos | VinOps" activeSection="eventos">
+  <section class="container py-3">
+    <h1 class="h3 mb-3">Eventos</h1>
+
+    <!-- Próximo evento: lo más importante, arriba del todo -->
+    <EventosProximo client:load />
+
+    <!-- Calendario de eventos a todo el ancho -->
+    <div class="mb-3">
+      <EventosCalendario client:load />
+    </div>
+
+    <!-- Panel de filtros + tabla de eventos debajo del calendario -->
+    <div class="mt-3">
+      <EventosList client:load />
+    </div>
+  </section>
+</AppLayout>

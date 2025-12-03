@@ -1,0 +1,12 @@
+---
+export const prerender = false;
+
+import AppLayout from "../../../layouts/AppLayout.astro";
+import ClienteNuevo from "../../../components/clientes/ClienteNuevo.jsx";
+---
+
+<AppLayout pageTitle="Nuevo cliente - VinOps" activeSection="clientes">
+  <section class="container py-3">
+    <ClienteNuevo client:load />
+  </section>
+</AppLayout>

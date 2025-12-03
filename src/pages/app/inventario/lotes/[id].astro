@@ -1,0 +1,35 @@
+---
+export const prerender = false;
+
+import AppLayout from "../../../../layouts/AppLayout.astro";
+import LoteDetalle from "../../../../components/inventario/LoteDetalle.jsx";
+
+const pageTitle = "Detalle de lote | VinOps";
+const activeSection = "inventario";
+
+const { id } = Astro.params;
+
+if (!id) {
+  throw new Error("ID de lote no proporcionado en la URL.");
+}
+---
+
+<AppLayout pageTitle={pageTitle} activeSection={activeSection}>
+  <section class="container py-3">
+    {/* Submenú Inventario */}
+    <ul class="nav nav-pills mb-3">
+      <li class="nav-item">
+        <a href="/app/inventario/productos" class="nav-link">
+          Productos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/app/inventario/lotes" class="nav-link active">
+          Lotes
+        </a>
+      </li>
+    </ul>
+
+    <LoteDetalle id={id} client:load />
+  </section>
+</AppLayout>

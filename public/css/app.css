@@ -1,0 +1,336 @@
+/* ===== LOGIN ===== */
+
+/* Fondo y centrado vertical */
+.login-body {
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at top left, #e5f0ff 0, #f9fafb 55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-main {
+  width: 100%;
+  padding: 2.5rem 1rem;
+}
+
+/* Tarjeta del login */
+.login-card-simple {
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2.4rem 2.6rem;
+  border-top: 4px solid #2563eb; /* azul VinOps */
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+}
+
+/* Cabecera con el “logo” de texto */
+.login-card-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 1rem !important;
+  text-align: center;
+}
+
+.login-logo {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+/* ===========================
+   Bloque TIEMPO BODEGA
+   =========================== */
+
+.tiempo-bodega-hoy {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  /* si quieres más "vino": #7c2d12, #b91c1c */
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+  border-radius: 0.75rem;
+}
+
+.tiempo-bodega-hoy-icon {
+  font-size: 2.6rem;
+}
+
+.tiempo-bodega-temp-actual {
+  font-size: 2.1rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.tiempo-bodega-temp-minmax {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Tarjetas de los demás días */
+.tiempo-bodega-dias .tiempo-bodega-dia-card {
+  background-color: #f8fafc;
+  border-radius: 0.85rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.6rem 0.5rem;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.tiempo-bodega-dias .tiempo-bodega-dia-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+  background-color: #ffffff;
+}
+
+/* ===========================
+   Sidebar VinOps
+   =========================== */
+
+.sidebar-vinops {
+  background-color: #111;
+}
+
+/* Enlaces del sidebar */
+.sidebar-vinops .sidebar-link {
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+  color: #f8f9fa;
+  width: 100%; /* que ocupe todo el ancho del sidebar -> más clicable */
+}
+
+.sidebar-vinops .sidebar-link i {
+  font-size: 1.1rem;
+}
+
+/* Hover */
+.sidebar-vinops .sidebar-link:hover {
+  background-color: #222;
+  color: #ffffff;
+}
+
+/* Activo */
+.sidebar-vinops .sidebar-link.active {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
+/* En móvil: solo iconos, pero con área grande clicable */
+@media (max-width: 767.98px) {
+  .login-main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .login-card-simple {
+    border-radius: 1rem;
+    padding: 2rem 2.1rem;
+  }
+
+  .sidebar-vinops {
+    width: 64px;
+  }
+
+  .sidebar-vinops .sidebar-link {
+    justify-content: center;
+    padding: 0.9rem 0; /* un poco más alto para acertar bien con el dedo */
+  }
+
+  .sidebar-vinops .sidebar-link i {
+    margin-right: 0;
+  }
+
+  /* también ajustamos el main público en móvil */
+  .public-main {
+    padding-top: 4rem;
+  }
+}
+
+/* En escritorio, sidebar un poco más ancho */
+@media (min-width: 768px) {
+  .sidebar-vinops {
+    width: 190px;
+  }
+}
+
+/* ===========================
+   Próximo evento (banner)
+   =========================== */
+
+.card-proximo-evento {
+  background-color: #e6f7ff; /* azul clarito */
+  border-color: #b3e0ff;
+}
+
+.card-proximo-evento .card-subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-proximo-evento strong {
+  font-size: 1rem;
+}
+
+/* ===========================
+   Calendario de eventos
+   =========================== */
+
+.calendar-table {
+  table-layout: fixed; /* todas las columnas mismo ancho */
+  width: 100%;
+}
+
+.calendar-table th,
+.calendar-table td {
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Botón "Usuarios" oculto por defecto */
+#nav-usuarios {
+  display: none;
+}
+
+/* ===========================
+   Plantilla albarán PDF
+   =========================== */
+
+/* Contenido normal de gestión (pantalla) */
+.albaran-ui {
+  /* sin estilos especiales, solo marcador */
+}
+
+/* Plantilla que usará html2pdf: oculta en modo normal */
+.albaran-print {
+  display: none;
+}
+
+/* Cuando activamos el modo PDF desde React
+   (handleDescargarPdf añade la clase al body) */
+body.albaran-pdf-mode {
+  background-color: #ffffff; /* fondo blanco para el PDF */
+}
+
+/* En modo PDF mostramos solo la plantilla limpia */
+body.albaran-pdf-mode .albaran-print {
+  display: block;
+}
+
+body.albaran-pdf-mode .albaran-ui {
+  display: none;
+}
+
+/* Ajuste de tamaños dentro del albarán PDF */
+.albaran-pdf-wrapper {
+  font-size: 12px;
+}
+
+.albaran-pdf-wrapper .table {
+  margin-bottom: 0.4rem;
+}
+
+/* ====== Estilos landing VinOps (home) ====== */
+
+.hero-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 55%);
+}
+
+.hero-title {
+  font-size: clamp(2.3rem, 3vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-title-highlight {
+  display: block;
+  color: #0d6efd;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.78rem;
+  border: 1px solid #e2e8f0;
+}
+
+.hero-preview-card {
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 1.25rem 2.5rem rgba(15, 23, 42, 0.12);
+  border: 1px solid #e5e7eb;
+}
+
+.hero-kpi {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.9rem;
+  background: #f9fafb;
+  border: 1px dashed #e5e7eb;
+}
+
+.hero-list-block {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.9rem;
+  background: #fdfdff;
+  border: 1px solid #edf2f7;
+}
+
+.module-card {
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 0.5rem 1rem rgba(15, 23, 42, 0.06);
+}
+
+.module-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  color: #1d4ed8;
+  margin-bottom: 0.75rem;
+}
+
+/* ===== Layout público (navbar + main) ===== */
+
+.public-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.public-main {
+  padding-top: 4.25rem; /* hueco para la navbar fija en escritorio */
+}
+
+.public-navbar .nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.public-navbar .nav-link:hover {
+  color: #0d6efd !important;
+}

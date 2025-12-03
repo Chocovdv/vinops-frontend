@@ -1,0 +1,17 @@
+---
+// src/pages/app/usuarios/nuevo.astro
+export const prerender = false;
+
+import AppLayout from "../../../layouts/AppLayout.astro";
+import UsuarioNuevo from "../../../components/usuarios/UsuarioNuevo.jsx";
+
+const pageTitle = "Nuevo usuario | VinOps";
+const activeSection = "usuarios";
+---
+
+<AppLayout pageTitle={pageTitle} activeSection={activeSection}>
+  <section class="container py-3">
+    <h1 class="h3 mb-3">Nuevo usuario</h1>
+    <UsuarioNuevo client:load />
+  </section>
+</AppLayout>

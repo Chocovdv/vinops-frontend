@@ -1,0 +1,109 @@
+---
+const { activeSection = "home" } = Astro.props;
+---
+
+<aside
+  class="col-auto col-md-2 col-lg-2 p-0 bg-dark text-white sidebar-vinops"
+  style="min-height: calc(100vh - 56px);"
+>
+  <div class="d-flex flex-column h-100">
+    <!-- Sección GENERAL -->
+    <div class="px-3 pt-3 pb-2 d-none d-md-block">
+      <span class="text-uppercase small text-muted">General</span>
+    </div>
+
+    <nav class="nav nav-pills flex-column mb-auto px-1">
+      <a
+        href="/app"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "home" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-house-door-fill me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Inicio</span>
+      </a>
+
+      <a
+        href="/app/bodega"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "bodega" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-building me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Bodega</span>
+      </a>
+
+      <a
+        href="/app/vinedo"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "vinedo" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-flower3 me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Viñedo</span>
+      </a>
+
+      <a
+        href="/app/inventario/productos"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "inventario" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-box-seam me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Inventario</span>
+      </a>
+
+      <a
+        href="/app/eventos"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "eventos" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-calendar-event me-2"></i>
+        <span
+          id="nav-text-eventos"
+          class="sidebar-link-text d-none d-md-inline"
+        >
+          Eventos
+        </span>
+      </a>
+
+      <a
+        href="/app/clientes"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "clientes" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-people-fill me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Clientes</span>
+      </a>
+
+      <a
+        href="/app/comercial/entregas"
+        class={`nav-link sidebar-link text-white d-flex align-items-center ${
+          activeSection === "comercial" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-truck me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Comercial</span>
+      </a>
+
+      <!-- 👇 Usuarios: OCULTO por defecto con d-none -->
+      <a
+        href="/app/usuarios"
+        id="nav-usuarios"
+        class={`nav-link sidebar-link text-white d-flex align-items-center d-none ${
+          activeSection === "usuarios" ? "active" : ""
+        }`}
+      >
+        <i class="bi bi-person-gear me-2"></i>
+        <span class="sidebar-link-text d-none d-md-inline">Usuarios</span>
+      </a>
+    </nav>
+
+    <!-- Zona inferior -->
+    <div class="mt-auto p-2 d-none d-md-block">
+      <small class="text-muted">VinOps</small>
+    </div>
+  </div>
+</aside>
